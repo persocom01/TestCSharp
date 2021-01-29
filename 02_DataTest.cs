@@ -30,11 +30,6 @@ namespace DataTestApp {
     short	shortMax = 32767;
     // ushort can be thought of as the +ve only version of short.
     ushort ushortMax = 65535;
-    // A char is a single character. It can be a letter, number, or one of the
-    // unicode escape sequences like '\u0000'. char is in single quotes '' while
-    // String is in double quotes "". They are not interchangable. A list of
-    // unicode chars can be found here:
-    // https://www.rapidtables.com/code/text/unicode-characters.html
 
     // object is the base class of all datatypes in C#. An object type can be
     // converted to any other datatype and any other datatype can be converted
@@ -45,8 +40,14 @@ namespace DataTestApp {
     // type when the code is compiled. For example, obj.ToUpper() will return
     // an error, because obj is not a string. However, dyn.ToUpper() will not.
     dynamic dyn = "dynamic";
+    // A char is a single character. It can be a letter, number, or one of the
+    // unicode escape sequences like '\u0000'. char is in single quotes '' while
+    // String is in double quotes "". They are not interchangable. A list of
+    // unicode chars can be found here:
+    // https://www.rapidtables.com/code/text/unicode-characters.html
     char c = '\u0063';
-    string text = "Hello World";
+
+    string stringLiteral = "Hello World";
 
     static void Main(string[] args) {
       DataTest dt = new DataTest();
