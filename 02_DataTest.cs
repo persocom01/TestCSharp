@@ -94,7 +94,7 @@ namespace DataTestApp {
       Console.WriteLine("dynamic: " + dt.dyn.ToUpper());
       // Like java, chars are treated as int when added, and can be converted
       // to int.
-      Console.WriteLine("char: " + (int)dt.c);
+      Console.WriteLine("char: " + dt.c);
       Console.WriteLine("string: " + dt.stringLiteral);
       Console.WriteLine();
 
@@ -103,6 +103,12 @@ namespace DataTestApp {
       // Visual Studio .NET. This is so that we can see the result instead of
       // the window closing automatically.
       // Console.ReadKey();
+      Console.WriteLine();
+
+      // C# supports data type conversion in a manner similar to java.
+      // Like in java, chars can be converted to int
+      Console.WriteLine(": " + (int)dt.c);
+      Console.WriteLine("asda" + 5);
     }
   }
 }

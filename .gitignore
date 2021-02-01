@@ -1,2 +1,5 @@
+# C# compiler programs
+*.exe
+
 # Custom exceptions
 00_test.cs
