@@ -42,12 +42,37 @@ namespace DataTestApp {
     dynamic dyn = "dynamic";
     // A char is a single character. It can be a letter, number, or one of the
     // unicode escape sequences like '\u0000'. char is in single quotes '' while
-    // String is in double quotes "". They are not interchangable. A list of
+    // string is in double quotes "". They are not interchangable. A list of
     // unicode chars can be found here:
     // https://www.rapidtables.com/code/text/unicode-characters.html
     char c = '\u0063';
+    // string is an object in C#, and comes with several methods. Using @
+    // before a tring code makes it the equivalent of a python raw string.
+    string stringLiteral = @"c:\Program Files\Microsoft Visual Studio";
 
-    string stringLiteral = "Hello World";
+    // Pointers are a type of variable that point to addresses of other
+    // variables. They can only be run in unsafe mode, which is dangerous
+    // unless you are sure that the code is completely safe. The advantage of
+    // using pointers is the performance advantage of not paying the cost for
+    // safety features. However, it is not recommended that you use unsafe code
+    // at all.
+    // unsafe can be used in the method name instead of a block. When used as
+    // a method, the method is capable of accepting pointers as arguments.
+    void PointerTest() {
+      // One way to write unsafe code is to use an unsafe block.
+
+      // unsafe {
+      //   int i = 1;
+      //   // & here means the memory address of.
+      //   int* iPtr = &i;
+      //   // Displays the pointer value.
+      //   Console.WriteLine(*iPtr);
+      //   // Displays the pointer address.
+      //   Console.WriteLine((int)iPtr);
+      // }
+
+      Console.WriteLine(@"unsafe code can only be run when compiling with /unsafe");
+    }
 
     static void Main(string[] args) {
       DataTest dt = new DataTest();
@@ -63,13 +88,17 @@ namespace DataTestApp {
       Console.WriteLine("ulong: " + dt.ulongMax);
       Console.WriteLine("short: " + dt.shortMax);
       Console.WriteLine("ushort: " + dt.ushortMax);
+      Console.WriteLine();
 
       Console.WriteLine("object: " + dt.obj);
       Console.WriteLine("dynamic: " + dt.dyn.ToUpper());
       // Like java, chars are treated as int when added, and can be converted
       // to int.
       Console.WriteLine("char: " + (int)dt.c);
+      Console.WriteLine("string: " + dt.stringLiteral);
       Console.WriteLine();
+
+      dt.PointerTest();
       // This line causes the program to require a key press to close in
       // Visual Studio .NET. This is so that we can see the result instead of
       // the window closing automatically.
