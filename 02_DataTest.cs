@@ -1,5 +1,8 @@
 // Demonstrates the C# data types.
 using System;
+// Required to use CultureInfo. Alternatively, append System.Globalization. in
+// front of CultureInfo.
+using System.Globalization;
 
 namespace DataTestApp {
 
@@ -74,6 +77,42 @@ namespace DataTestApp {
       Console.WriteLine(@"unsafe code can only be run when compiling with /unsafe");
     }
 
+    // Lists all cultures available in CultureInfo.
+    void ListCultures() {
+      Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+      Console.WriteLine("{0,-15}{0,-5}{0,-45}{0,-40}", "Culture", "ISO",
+                "Display name", "English Name");
+
+      foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures))
+      {
+        Console.Write("{0,-15}", ci.Name);
+        Console.Write("{0,-5}", ci.TwoLetterISOLanguageName);
+        Console.Write("{0,-45}", ci.DisplayName);
+        Console.WriteLine("{0,-40}", ci.EnglishName);
+      }
+    }
+
+    void DateTimeTest(string[] s, string code, string format) {
+      CultureInfo c = new CultureInfo(code);
+
+      Console.WriteLine("date conversions");
+
+      for (int i = 0; i < s.Length; i++) {
+        DateTime d = Convert.ToDateTime(s[i], c);
+        // A DateTime object can be printed on its own, or one can use an exact
+        // format.
+        // Console.WriteLine(d);
+        string custom = d.ToString(format);
+        Console.WriteLine(custom);
+      }
+    }
+
+    void DateTimeParseExactTest(string date, string format) {
+      DateTime d = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+      Console.WriteLine("ParseExact: " + d);
+    }
+
     static void Main(string[] args) {
       DataTest dt = new DataTest();
       Console.WriteLine("boolean: " + dt.isFalse);
@@ -106,9 +145,42 @@ namespace DataTestApp {
       Console.WriteLine();
 
       // C# supports data type conversion in a manner similar to java.
-      // Like in java, chars can be converted to int
-      Console.WriteLine(": " + (int)dt.c);
-      Console.WriteLine("asda" + 5);
+      // All types will be conerted to string when using the + operator with a
+      // string. Note that C# does not support , in Console.WriteLine(). To
+      // write multiple things at once + is used.
+      Console.WriteLine("int rounds down: " + (int)1.9);
+      // Like in java, chars are automatically converted to string and int.
+      Console.WriteLine("char to string: " + dt.c);
+      Console.WriteLine("char to int: " + (int)dt.c);
+      // C# also has a number of builtin conversion methods:
+      // https://www.tutorialspoint.com/csharp/csharp_type_conversion.htm
+      // Most basic types can be converted to string using the .ToString()
+      // method. Note that (string)dataType does not work.
+      Console.WriteLine("bool to string: " + dt.isFalse.ToString());
+      // To use the other type conversion methods, you need
+      // Convert.ToType(targetData). .ToBoolean() is notable for returning true
+      // so long as the number is not 0, even if it is -ve.
+      Console.WriteLine("num to boolean: " + Convert.ToBoolean(-1));
+      // .ToBoolean() only works on the strings "true" or "false" regardless of
+      // caps, and does not work on char.
+      Console.WriteLine("string to boolean: " + Convert.ToBoolean("FALSE"));
+      Console.WriteLine();
+
+      string[] date1 = {
+        "01/02/09",
+        "2009-02-03",
+        "01.2009.03",
+        "01 02 2009",
+        "01/02/23"
+      };
+      string date2 = "1 dec 2020";
+      string cultureCode = "en-US";
+      // Find the date format string here:
+      // https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings?redirectedfrom=MSDN
+      string customFormat = "d MMM yyyy";
+      // dt.ListCultures();
+      dt.DateTimeTest(date1, cultureCode, customFormat);
+      dt.DateTimeParseExactTest(date2, customFormat);
     }
   }
 }

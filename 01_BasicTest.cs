@@ -23,7 +23,9 @@ namespace BasicTestApp {
       // You can append @ to the start of a keyword if you insist on using it
       // as an identifer.
       string text = "Hello World";
-      // Console comes from System.
+      // Console comes from System. .WriteLine() writes to the console While
+      // automatically adding \n to the end. .Write() does the same thing
+      // Without this behavior.
       Console.WriteLine(text);
       // This line causes the program to require a key press to close in
       // Visual Studio .NET. This is so that we can see the result instead of
