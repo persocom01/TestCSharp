@@ -22,11 +22,14 @@ namespace BasicTestApp {
       // https://www.tutorialspoint.com/csharp/csharp_basic_syntax.htm
       // You can append @ to the start of a keyword if you insist on using it
       // as an identifer.
-      string text = "Hello World";
+      string text = "Hello";
       // Console comes from System. .WriteLine() writes to the console While
       // automatically adding \n to the end. .Write() does the same thing
-      // Without this behavior.
-      Console.WriteLine(text);
+      // Without this behavior. In C#, .WriteLine() can be used to format
+      // strings in a manner similar to python f strings, and not just
+      // String.Format(). A string format cheatsheet can be found here:
+      // http://independent-software.com/net-string-formatting-in-csharp-cheat-sheet.html
+      Console.WriteLine("{0} World", text);
       // This line causes the program to require a key press to close in
       // Visual Studio .NET. This is so that we can see the result instead of
       // the window closing automatically.

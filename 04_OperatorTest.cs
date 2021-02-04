@@ -46,9 +46,113 @@ namespace OperatorTestApp {
       Console.WriteLine("power:\n" + y);
     }
 
+    void RelationalOperatorTest() {
+      int x;
+      double y;
+      bool z;
+      x = 1;
+      y = 1.0;
+      // == works between int and double.
+      z = y == x;
+      Console.WriteLine("==: " + z);
+      z = y != x;
+      Console.WriteLine("!=: " + z);
+      z = y > x;
+      Console.WriteLine(">: " + z);
+      z = y <= x;
+      Console.WriteLine("<=: " + z);
+    }
+
+    void LogicalOperatorTest() {
+      // Logical operators only work between bool variables in testing.
+      bool x = true;
+      bool y = false;
+      bool z;
+      // && == and
+      z = y && x;
+      Console.WriteLine("&&: " + z);
+      // || == or
+      z = y || x;
+      Console.WriteLine("||: " + z);
+      // ! == not
+      z = !(y && x);
+      Console.WriteLine("!: " + z);
+      // While not a logical operator, instanceof is used to check if a variable
+      // belongs to a particular class. It generally does not work on primitive
+      // data types except strings.
+      string s = "word";
+      z = s is string;
+      Console.WriteLine("is: " + z);
+    }
+
+    void BitwiseOperatorTest() {
+      // Bitwise operators can only be applied to the integer datatypes:
+      // byte, short, int, long, char.
+      // It works on bits, which can be seen if the numbers are converted to
+      // binary.
+      // Assignment operators exist for all bitwise operators except ~ and >>>.
+      // This means statements like:
+      // y = y&x
+      // can be written as:
+      // y &= x
+      int x = 60;
+      int y = 13;
+      int z;
+      string s;
+      s = String.Format("{0, 7}", Convert.ToString(x, 2)).Replace(' ', '0');
+      Console.WriteLine("binary 60: " + s);
+      s = String.Format("{0, 7}", Convert.ToString(y, 2)).Replace(' ', '0');
+      Console.WriteLine("binary 13: " + s);
+      // & copies bits that are the same in both.
+      z = x&y;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine("&: " + s);
+      // & copies bits as long as they occur in one.
+      z = x|y;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine("|: " + s);
+      // ^ copies bits that occur in one or the other but not both.
+      z = x^y;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine("^: " + s);
+      // ~ gives the compliment of the int, which is in this case -61.
+      z = ~x;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine("~: " + s);
+      // Shifts the bits left.
+      z = x<<1;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine("<<: " + s);
+      // Shifts the bits right.
+      z = x>>1;
+      s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      Console.WriteLine(">>: " + s);
+      // Shifts the bits right and replaces the empty spaces with 0.
+      // z = x>>>1;
+      // s = String.format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
+      // Console.WriteLine(">>>: " + s);
+    }
+
+    void MiscellaneousOperatorTest() {
+      // While not a logical operator, instanceof is used to check if a variable
+      // belongs to a particular class. It generally does not work on primitive
+      // data types except strings.
+      // string s = "word";
+      // z = s is string;
+      // Console.WriteLine("is: " + z);
+    }
+
     static void Main(string[] args) {
       OperatorTest ot = new OperatorTest();
       ot.ArithmeticOperatorTest();
+      Console.WriteLine();
+      ot.RelationalOperatorTest();
+      Console.WriteLine();
+      ot.LogicalOperatorTest();
+      Console.WriteLine();
+      ot.BitwiseOperatorTest();
+      Console.WriteLine();
+      ot.MiscellaneousOperatorTest();
     }
   }
 }

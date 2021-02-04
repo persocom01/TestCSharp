@@ -81,7 +81,9 @@ namespace DataTestApp {
     void ListCultures() {
       Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-      Console.WriteLine("{0,-15}{0,-5}{0,-45}{0,-40}", "Culture", "ISO",
+      // {index, padding} is used to add padding to the printed string. A +ve
+      // padding value adds padding to the left, a -ve adds it to the right.
+      Console.WriteLine("{0,-15}{1,-5}{2,-45}{3,-40}", "Culture", "ISO",
                 "Display name", "English Name");
 
       foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures))
