@@ -162,7 +162,13 @@ namespace DataTestApp {
       // To use the other type conversion methods, you need
       // Convert.ToType(targetData). .ToBoolean() is notable for returning true
       // so long as the number is not 0, even if it is -ve.
+      // Covert.ToString(type, radix) has a few advantages over its
+      // type.ToString counterpart. For one, Covert.ToString would not return
+      // an error if the type, such as if it were a user input. In addition,
+      // Convert.ToString(value, toBase) is able to convert numbers to
+      // different bases. Only the bases 2, 8, 10, and 16 are supported.
       Console.WriteLine("num to boolean: " + Convert.ToBoolean(-1));
+      Console.WriteLine("num to string binary representation: " + Convert.ToString(60, 2));
       // .ToBoolean() only works on the strings "true" or "false" regardless of
       // caps, and does not work on char.
       Console.WriteLine("string to boolean: " + Convert.ToBoolean("FALSE"));

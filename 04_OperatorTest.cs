@@ -99,7 +99,9 @@ namespace OperatorTestApp {
       int y = 13;
       int z;
       string s;
-      s = String.Format("{0, 7}", Convert.ToString(x, 2)).Replace(' ', '0');
+      // .ToString(target, radix). radix = 2 is used to convert the int into
+      // its binary representation.
+      s = String.Format("{0, 7}", x.ToString()).Replace(' ', '0');
       Console.WriteLine("binary 60: " + s);
       s = String.Format("{0, 7}", Convert.ToString(y, 2)).Replace(' ', '0');
       Console.WriteLine("binary 13: " + s);
