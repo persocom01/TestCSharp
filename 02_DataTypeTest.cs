@@ -4,9 +4,9 @@ using System;
 // front of CultureInfo.
 using System.Globalization;
 
-namespace DataTestApp {
+namespace DataTypeTestApp {
 
-  class DataTest {
+  class DataTypeTest {
     bool isFalse = false;
     // Bytes can only be positive.
     byte byteMax = 255;
@@ -116,30 +116,30 @@ namespace DataTestApp {
     }
 
     static void Main(string[] args) {
-      DataTest dt = new DataTest();
-      Console.WriteLine("boolean: " + dt.isFalse);
-      Console.WriteLine("byte: " + dt.byteMax);
-      Console.WriteLine("sbyte: " + dt.sbyteMax);
-      Console.WriteLine("decimal: " + dt.deciMax);
-      Console.WriteLine("double: " + dt.doubleEx);
-      Console.WriteLine("float: " + dt.floatEx);
-      Console.WriteLine("int: " + dt.intMax);
-      Console.WriteLine("uint: " + dt.uintMax);
-      Console.WriteLine("long: " + dt.longMax);
-      Console.WriteLine("ulong: " + dt.ulongMax);
-      Console.WriteLine("short: " + dt.shortMax);
-      Console.WriteLine("ushort: " + dt.ushortMax);
+      DataTypeTest dtt = new DataTypeTest();
+      Console.WriteLine("boolean: " + dtt.isFalse);
+      Console.WriteLine("byte: " + dtt.byteMax);
+      Console.WriteLine("sbyte: " + dtt.sbyteMax);
+      Console.WriteLine("decimal: " + dtt.deciMax);
+      Console.WriteLine("double: " + dtt.doubleEx);
+      Console.WriteLine("float: " + dtt.floatEx);
+      Console.WriteLine("int: " + dtt.intMax);
+      Console.WriteLine("uint: " + dtt.uintMax);
+      Console.WriteLine("long: " + dtt.longMax);
+      Console.WriteLine("ulong: " + dtt.ulongMax);
+      Console.WriteLine("short: " + dtt.shortMax);
+      Console.WriteLine("ushort: " + dtt.ushortMax);
       Console.WriteLine();
 
-      Console.WriteLine("object: " + dt.obj);
-      Console.WriteLine("dynamic: " + dt.dyn.ToUpper());
+      Console.WriteLine("object: " + dtt.obj);
+      Console.WriteLine("dynamic: " + dtt.dyn.ToUpper());
       // Like java, chars are treated as int when added, and can be converted
       // to int.
-      Console.WriteLine("char: " + dt.c);
-      Console.WriteLine("string: " + dt.stringLiteral);
+      Console.WriteLine("char: " + dtt.c);
+      Console.WriteLine("string: " + dtt.stringLiteral);
       Console.WriteLine();
 
-      dt.PointerTest();
+      dtt.PointerTest();
       // This line causes the program to require a key press to close in
       // Visual Studio .NET. This is so that we can see the result instead of
       // the window closing automatically.
@@ -152,13 +152,15 @@ namespace DataTestApp {
       // write multiple things at once + is used.
       Console.WriteLine("int rounds down: " + (int)1.9);
       // Like in java, chars are automatically converted to string and int.
-      Console.WriteLine("char to string: " + dt.c);
-      Console.WriteLine("char to int: " + (int)dt.c);
+      Console.WriteLine("char to string: " + dtt.c);
+      Console.WriteLine("char to int: " + (int)dtt.c);
       // C# also has a number of builtin conversion methods:
       // https://www.tutorialspoint.com/csharp/csharp_type_conversion.htm
       // Most basic types can be converted to string using the .ToString()
-      // method. Note that (string)dataType does not work.
-      Console.WriteLine("bool to string: " + dt.isFalse.ToString());
+      // method. Note that (string)dataType does not work. In addition,
+      // double.ToString() allows the string to be formatted in specific ways:
+      // https://docs.microsoft.com/en-us/dotnet/api/system.double.tostring
+      Console.WriteLine("bool to string: " + dtt.isFalse.ToString());
       // To use the other type conversion methods, you need
       // Convert.ToType(targetData). .ToBoolean() is notable for returning true
       // so long as the number is not 0, even if it is -ve.
@@ -186,9 +188,9 @@ namespace DataTestApp {
       // Find the date format string here:
       // https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings?redirectedfrom=MSDN
       string customFormat = "d MMM yyyy";
-      // dt.ListCultures();
-      dt.DateTimeTest(date1, cultureCode, customFormat);
-      dt.DateTimeParseExactTest(date2, customFormat);
+      // dtt.ListCultures();
+      dtt.DateTimeTest(date1, cultureCode, customFormat);
+      dtt.DateTimeParseExactTest(date2, customFormat);
     }
   }
 }
