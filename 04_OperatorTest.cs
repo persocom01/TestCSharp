@@ -77,12 +77,6 @@ namespace OperatorTestApp {
       // ! == not
       z = !(y && x);
       Console.WriteLine("!: " + z);
-      // While not a logical operator, instanceof is used to check if a variable
-      // belongs to a particular class. It generally does not work on primitive
-      // data types except strings.
-      string s = "word";
-      z = s is string;
-      Console.WriteLine("is: " + z);
     }
 
     void BitwiseOperatorTest() {
@@ -99,9 +93,9 @@ namespace OperatorTestApp {
       int y = 13;
       int z;
       string s;
-      // .ToString(target, radix). radix = 2 is used to convert the int into
+      // .ToString(value, toBase). toBase = 2 is used to convert the int into
       // its binary representation.
-      s = String.Format("{0, 7}", x.ToString()).Replace(' ', '0');
+      s = String.Format("{0, 7}", Convert.ToString(x, 2)).Replace(' ', '0');
       Console.WriteLine("binary 60: " + s);
       s = String.Format("{0, 7}", Convert.ToString(y, 2)).Replace(' ', '0');
       Console.WriteLine("binary 13: " + s);
@@ -129,19 +123,50 @@ namespace OperatorTestApp {
       z = x>>1;
       s = String.Format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
       Console.WriteLine(">>: " + s);
-      // Shifts the bits right and replaces the empty spaces with 0.
-      // z = x>>>1;
-      // s = String.format("{0, 7}", Convert.ToString(z, 2)).Replace(' ', '0');
-      // Console.WriteLine(">>>: " + s);
     }
 
     void MiscellaneousOperatorTest() {
-      // While not a logical operator, instanceof is used to check if a variable
-      // belongs to a particular class. It generally does not work on primitive
-      // data types except strings.
-      // string s = "word";
-      // z = s is string;
-      // Console.WriteLine("is: " + z);
+      bool z;
+      string s = "hello";
+      // sizeof only works on datatypes with fixed sizes. This includes all
+      // numerical datatypes and char but not string. It only works on string
+      // in an unsafe context.
+      Console.WriteLine("sizeof: " + sizeof(char));
+      // typeof returns the namespace and class of an object. It only works on
+      // the class object and not any of its instances. For example, it works
+      // on int but not an int variable. The Type variable is sometimes used
+      // to store the return value of typeof.
+      Dog milo = new Dog();
+      Type t = typeof(Dog);
+      Console.WriteLine("milo is typeof: " + t);
+      // .GetType() can be used to determine the type of variable in
+      // combination with typeof(). However, is is more often better suited for
+      // this purpose.
+      z = (milo.GetType() == t);
+      Console.WriteLine("milo typeof Dog?: " + z);
+      // A .GetType() and typeof combination returns false on a subclass.
+      z = (milo.GetType() == typeof(Animal));
+      Console.WriteLine("milo typeof Animal?: " + z);
+      // Is works very much like a .GetType() and typeof combination, with one
+      // key difference. It will return true if the target is a subclass.
+      z = milo is Animal;
+      Console.WriteLine("is milo an animal?: " + z);
+
+      // In C# 7.0, is supports pattern matching. This means in if statements
+      // such as, if (target is type var), one can assign a temp var for use
+      // within the if statement if it returns true.
+      // if (s is string v) {
+      //   Console.WriteLine("s length = " + v.Length);
+      // }
+      // throw new ArgumentException("s is not a string.");
+
+      // The alternative to is pattern matching is to use as. as is like is,
+      // but it does not return an error if it fails.
+      var v = s as string;
+      if (s == null) {
+        throw new ArgumentException("s is not a string.");
+      }
+      Console.WriteLine("s length = " + v.Length);
     }
 
     static void Main(string[] args) {
@@ -157,4 +182,9 @@ namespace OperatorTestApp {
       ot.MiscellaneousOperatorTest();
     }
   }
+
+  class Animal {}
+
+  // Dog is a subclass of Animal.
+  class Dog : Animal {}
 }

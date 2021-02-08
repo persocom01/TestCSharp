@@ -17,6 +17,8 @@ namespace VariableTestApp {
       // doubles or floats can be written in exponential notation indicated by
       // e or E. To write as a float add a F to the end.
       double expDouble = 3.14159e-5;
+      // C# supports conditional variables in a manner similar to javaScript.
+      string conditionalVar = (m1 > 10) ? "m1 is > 10" : "m1 is <= 10";
 
       // Lets the user input a value.
       // uninitialized = Convert.ToInt32(Console.ReadLine());
@@ -28,6 +30,7 @@ namespace VariableTestApp {
       // Hexadecimal is base 16.
       Console.WriteLine("hexInt: {0} -> {1}", Convert.ToString(hexInt, 16), hexInt);
       Console.WriteLine("expdouble: {0} -> {1}", expDouble.ToString("e"), expDouble);
+      Console.WriteLine("conditional var: " + conditionalVar);
     }
   }
 }
