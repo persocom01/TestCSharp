@@ -166,7 +166,7 @@ namespace OperatorTestApp {
       if (s == null) {
         throw new ArgumentException("s is not a string.");
       }
-      Console.WriteLine("s length = " + v.Length);
+      Console.WriteLine("s as string length = " + v.Length);
     }
 
     static void Main(string[] args) {
